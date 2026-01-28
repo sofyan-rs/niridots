@@ -1,0 +1,198 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top", // Waybar at top layer
+  "position": "top", // Waybar position (top|bottom|left|right)
+  "height": 42, // Waybar height (to be removed for auto height)
+  // "width": 1900, // Waybar width
+  "margin-top": 0,
+  "spacing": 0,
+  "modules-left": ["custom/rofi", "niri/workspaces", "niri/window"],
+  "modules-center": [],
+  "modules-right": [
+    "mpris",
+    // "network",
+    // "cpu",
+    // "memory",
+    // "temperature",
+    "group/tray-expander",
+    // "bluetooth",
+    "custom/colorpicker",
+    "custom/wallpaper",
+    "pulseaudio",
+    // "battery",
+    // "power-profiles-daemon",
+    "clock",
+    "custom/notification",
+    "custom/power",
+  ],
+  "tray": {
+    "icon-size": 15,
+    "spacing": 8,
+  },
+  "group/tray-expander": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "tray-group-item",
+    },
+    "modules": ["custom/expand-icon", "tray"],
+  },
+  "custom/expand-icon": {
+    "format": "",
+    "tooltip": false,
+    "on-scroll-up": "",
+    "on-scroll-down": "",
+    "on-scroll-left": "",
+    "on-scroll-right": "",
+  },
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      // "1": "",
+      // "2": "",
+      // "3": "",
+      // "4": "󰭻",
+      // "5": "",
+      // "6": "",
+      // "default": "",
+      // "active": "",
+    },
+    "persistent-workspaces": {
+      "*": [1, 2, 3, 4, 5, 6],
+    },
+  },
+  // "niri/window": {
+  //   "icon": true,
+  //   "icon-size": 16
+  // },
+  "clock": {
+    // "timezone": "America/New_York",
+    "tooltip-format": "<big>{:%A, %d %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%A, %d %B %Y - %H:%m}",
+  },
+  "cpu": {
+    "format": "<span color='#c680e2'></span> {usage}%",
+    "tooltip": false,
+  },
+  "memory": {
+    "format": "<span color='#61B6E6'></span> {}%",
+  },
+  "temperature": {
+    // "thermal-zone": 1,
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    "format": "<span color='#f43f5e'>{icon}</span> {temperatureC}°C",
+    "format-icons": ["", "", ""],
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{icon} {capacity}%",
+    "format-full": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon} {time}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": ["", "", "", "", ""],
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": "",
+    },
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    // "format-wifi": "{essid} ",
+    // "format-ethernet": "{ipaddr}/{cidr} ",
+    // "format-linked": "{ifname} (No IP) ",
+    "interval": 2,
+    "format-wifi": "<span color='#61B6E6'>↓</span> {bandwidthDownBits} - <span color='#f43f5e'>↑</span> {bandwidthUpBits}",
+    "format-ethernet": "<span color='#61B6E6'>↓</span> {bandwidthDownBits} - <span color='#f43f5e'>↑</span> {bandwidthUpBits}",
+    "format-disconnected": " Disconnected",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+  },
+  "bluetooth": {
+    "interval": 5,
+    "format": " {status}",
+    "format-connected": "",
+    "format-connected-battery": " {device_battery_percentage}%",
+    "tooltip-format": "{device_alias} • {device_address}",
+    "on-click": "blueman-manager",
+    "format-no-controller": "",
+  },
+  "pulseaudio": {
+    "scroll-step": 2,
+    "format": "<span color='#61B6E6'>{icon}</span> {volume}%",
+    "format-bluetooth": "{icon} {volume}% -  {format_source}",
+    "format-bluetooth-muted": "{icon}  -  {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
+    },
+    "on-click": "pavucontrol",
+  },
+  "custom/notification": {
+    "exec": "~/.local/bin/waybar-mako-notif.py",
+    "restart-interval": 0,
+    "return-type": "json",
+    "read-stdin": true,
+    "format": "<span color='#e5c078'></span> {text}",
+    "tooltip": "{tooltip}",
+    "class": "{class}",
+    "on-click": "makoctl dismiss --all",
+  },
+  "custom/power": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "~/.config/rofi/powermenu.sh",
+    "on-click-right": "hyprctl dispatch exit",
+    "interval": 60,
+  },
+  "custom/colorpicker": {
+    "format": "",
+    "tooltip": "Pick a color",
+    "on-click": "sleep 0.1 && hyprpicker -a -f hex && notify-send 'Color copied to clipboard'",
+  },
+  "custom/rofi": {
+    "format": "󱗼",
+    "tooltip": "Launch Rofi",
+    "on-click": "rofi -show drun",
+  },
+  "mpris": {
+    "format": "{player_icon} {title} - {artist}",
+    "format-paused": "{status_icon} <i>{title} - {artist}</i>",
+    "player-icons": {
+      "default": "",
+    },
+    "status-icons": {
+      "paused": "",
+    },
+    "max-length": 30,
+    "interval": 1,
+  },
+  "custom/wallpaper": {
+    "format": "",
+    "on-click": "waypaper --random",
+    "on-click-right": "waypaper",
+    "tooltip-format": "Change Wallpaper",
+  },
+}

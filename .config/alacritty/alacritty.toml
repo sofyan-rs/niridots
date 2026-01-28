@@ -1,0 +1,95 @@
+# =============================================================================
+#  ALACRITTY CONFIGURATION (Niri / Wayland Optimized)
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+#  Window Settings
+# -----------------------------------------------------------------------------
+[window]
+# Transparency (0.0 is invisible, 1.0 is opaque)
+# Since Niri doesn't blur yet, keep this slightly higher (0.8 - 0.9) for readability.
+opacity = 0.9
+
+# Window padding (Inner gaps)
+# Adds space between the window border and text for a cleaner look.
+padding = { x = 20, y = 20 }
+
+# Let Niri handle the decorations (borders/corners)
+decorations = "None"
+
+# Startup Mode (Windowed, Maximized, Fullscreen)
+startup_mode = "Windowed"
+
+# Dynamic title (useful for window rules)
+dynamic_title = true
+
+# -----------------------------------------------------------------------------
+#  Scrolling
+# -----------------------------------------------------------------------------
+[scrolling]
+# Number of lines to keep in history
+history = 10000
+multiplier = 3
+
+# -----------------------------------------------------------------------------
+#  Font Settings
+# -----------------------------------------------------------------------------
+[font]
+normal = { family = "CaskaydiaCove Nerd Font Propo", style = "Regular" }
+bold = { family = "CaskaydiaCove Nerd Font Propo", style = "Bold" }
+italic = { family = "CaskaydiaCove Nerd Font Propo", style = "Italic" }
+
+size = 12.0
+
+# -----------------------------------------------------------------------------
+#  Colors (Theme: Tokyo Night Storm)
+# -----------------------------------------------------------------------------
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.primary]
+background = "#24283b"
+foreground = "#c0caf5"
+
+[colors.normal]
+black   = "#1d202f"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#c0caf5"
+
+[colors.dim]
+black   = "#1d202f"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+# -----------------------------------------------------------------------------
+#  Cursor
+# -----------------------------------------------------------------------------
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+unfocused_hollow = true
+
+# -----------------------------------------------------------------------------
+#  Environment
+# -----------------------------------------------------------------------------
+[env]
+TERM = "alacritty"

@@ -1,0 +1,64 @@
+configuration {
+  font: "CaskaydiaCove Nerd Font Propo Medium 14";
+  timeout {
+    delay: 10;
+    action: "kb-cancel";
+  }
+  hover-select: true;
+  me-select-entry: "";
+  me-accept-entry: "MousePrimary";
+}
+
+* {
+  bg: #1c1e28;
+  bg-alt: #313244;
+
+  fg: #eeeeee;
+  fg-alt: #777777;
+  accent: #bf2257;
+  secondary: #61b6e6;
+
+  background-color: transparent;
+  text-color: @fg-alt;
+
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+  border-radius: 6px;
+}
+
+window {
+  background-color: @bg;
+  padding: 8px;
+  transparency: "real";
+  width: 300;
+  border: 2px;
+  border-color: @bg-alt;
+}
+
+mainbox {
+  children: [listview];
+}
+
+listview {
+  lines: 5;
+}
+
+element {
+  children: [element-text];
+}
+
+element-icon {
+  padding: 10px 10px;
+}
+
+element-text {
+  padding: 10px 15px;
+}
+
+element-text selected {
+  background-color: @accent;
+  text-color: @bg;
+  border-radius: 5px;
+}
